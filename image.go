@@ -10,6 +10,9 @@ type Image struct {
 	// Cpus is the number of cpu resources to give to the container
 	Cpus float64 `json:"cpus,omitempty"`
 
+	// Cpuset is the single or multiple set of cpus on which the container can run
+	Cpuset string `json:"cpuset,omitempty"`
+
 	// Memory is the amount of memory in MB for the container
 	Memory float64 `json:"memory,omitempty"`
 
@@ -65,5 +68,5 @@ type RestartPolicy struct {
 }
 
 func (i *Image) String() string {
-	return fmt.Sprintf("image %s type %s cpus %f memory %f", i.Name, i.Type, i.Cpus, i.Memory)
+	return fmt.Sprintf("image %s type %s cpus %f cpuset %s memory %f", i.Name, i.Type, i.Cpus, i.Cpuset, i.Memory)
 }

@@ -123,6 +123,7 @@ func FromDockerContainer(id, image string, engine *Engine) (*Container, error) {
 		Image: &Image{
 			Name:        image,
 			Cpus:        float64(info.Config.CpuShares) / 100.0 * engine.Cpus,
+			Cpuset:      info.Config.Cpuset,
 			Memory:      float64(info.Config.Memory / 1024 / 1024),
 			Volumes:     vols,
 			Environment: env,

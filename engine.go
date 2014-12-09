@@ -85,6 +85,7 @@ func (e *Engine) Start(c *Container, pullImage bool) error {
 		Memory:       int64(i.Memory) * 1024 * 1024,
 		Env:          env,
 		CpuShares:    int64(i.Cpus * 100.0 / e.Cpus),
+		Cpuset:       i.Cpuset,
 		ExposedPorts: make(map[string]struct{}),
 		Volumes:      vols,
 	}
