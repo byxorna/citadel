@@ -19,6 +19,7 @@ type Engine struct {
 	Labels []string `json:"labels,omitempty"`
 
 	client       *dockerclient.DockerClient
+  clientAuth   *dockerclient.AuthConfig
 	eventHandler EventHandler
 }
 
@@ -43,7 +44,7 @@ func (e *Engine) IsConnected() bool {
 }
 
 func (e *Engine) Pull(image string) error {
-	if err := e.client.PullImage(image); err != nil {
+	if err := e.client.PullImage(image, e.clientAuth); err != nil {
 		return err
 	}
 	return nil
