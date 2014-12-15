@@ -19,7 +19,7 @@ type Engine struct {
 	Labels []string `json:"labels,omitempty"`
 
 	client       *dockerclient.DockerClient
-  clientAuth   *dockerclient.AuthConfig
+	clientAuth   *dockerclient.AuthConfig
 	eventHandler EventHandler
 }
 
