@@ -22,7 +22,9 @@ func (s *PortScheduler) hasConflictingPorts(imagePorts []*citadel.Port, containe
 	for _, ct := range containers {
 		for _, hostPort := range ct.Ports {
 			for _, imagePort := range imagePorts {
-				if hostPort.Port == imagePort.Port {
+				// an Image with BindPorts containing HostIp == "" is equivalent to "0.0.0.0"
+				// as dockerclient does this translation when running an image
+				if (hostPort.HostIp == imagePort.HostIp || hostPort.HostIp == "0.0.0.0" && imagePort.HostIp == "") && hostPort.Port == imagePort.Port {
 					return true
 				}
 			}
